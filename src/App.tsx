@@ -1,17 +1,14 @@
 import { useState } from "react";
-
-interface HandleNumbers {
-    currentNumber: number;
-    newNumber: number;
-}
+import { HandleNumbers } from "./interfaces/interfaces";
+import NumberButton from "./components/numberButton";
 
 const App = () => {
     const [result, setResult] = useState(0);
 
-    const handleNumbers = ({
+    const handleNumbers: HandleNumbers = (
         currentNumber,
-        newNumber,
-    }: HandleNumbers): boolean => {
+        newNumber
+    ): boolean => {
         const currentNumberTimesTen: number = currentNumber * 10;
         const finalNumber: number = currentNumberTimesTen + newNumber;
         setResult(finalNumber);
@@ -25,14 +22,8 @@ const App = () => {
             <div>+/-</div>
             <div>%</div>
             <div>÷</div>
-            <button
-                onClick={() =>
-                    handleNumbers({ currentNumber: result, newNumber: 7 })
-                }
-            >
-                7
-            </button>
-            <div>8</div>
+            <button onClick={() => handleNumbers(result, 7)}>7</button>
+            <div><NumberButton</div>
             <div>9</div>
             <div>x</div>
             <div>4</div>
