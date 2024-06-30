@@ -4,23 +4,45 @@ import ButtonClear from "./components/ButtonClear";
 import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
 import ButtonPercentage from "./components/ButtonPercentage";
 import ButtonDecimal from "./components/ButtonDecimal";
+import Result from "./components/Result";
 
 const App = () => {
     const [result, setResult] = useState(0);
     const [decimalBoolean, setDecimalBoolean] = useState(false);
-    const [decimalMagnitude, setDecimalMagnitude] = useState(1);
+    const [decimalMagnitude, setDecimalMagnitude] = useState(0.1);
+    const [inputCount, setInputCount] = useState(0);
 
-    console.log(decimalBoolean);
+    console.log(`result: ${result}`);
+    console.log(`decimalBoolean: ${decimalBoolean}`);
+    console.log(`decimalMagnitude: ${decimalMagnitude}`);
+    console.log(`inputCount: ${inputCount}`);
 
-    const handleNumbers = (currentNumber: number, newNumber: number): void => {
-        const currentNumberTimesTen: number = currentNumber * 10;
-        const finalNumber: number = currentNumberTimesTen + newNumber;
-        setResult(finalNumber);
+    const handleNumbers = (
+        currentNumber: number,
+        newNumber: number,
+        decimalBoolean: boolean,
+        decimalMagnitude: number
+    ): void => {
+        if (!decimalBoolean) {
+            const currentNumberTimesTen: number = currentNumber * 10;
+            const finalNumber: number = currentNumberTimesTen + newNumber;
+            setResult(finalNumber);
+            setInputCount(inputCount + 1);
+        } else {
+            const newNumberDecimal: number = newNumber * decimalMagnitude;
+            const finalNumber: number = currentNumber + newNumberDecimal;
+            const newDecimalMagnitude = decimalMagnitude * 0.1;
+            setResult(finalNumber);
+            setDecimalMagnitude(newDecimalMagnitude);
+            setInputCount(inputCount + 1);
+        }
     };
 
     const handleClear = (): void => {
         setResult(0);
+        setInputCount(0);
         setDecimalBoolean(!decimalBoolean);
+        setDecimalMagnitude(0.1);
     };
 
     const handlePositiveNegative = (result: number): void => {
@@ -38,14 +60,16 @@ const App = () => {
         setDecimalBoolean(newDecimalBoolean);
     };
 
-    const handleDecimalMagnitude = (): void => {
-        const newDecimalMagnitude: number = decimalMagnitude * 0.1;
-        setDecimalMagnitude(newDecimalMagnitude);
-    };
+    // const handleDecimalMagnitude = (): void => {
+    //     const newDecimalMagnitude: number = decimalMagnitude * 0.1;
+    //     setDecimalMagnitude(newDecimalMagnitude);
+    // };
 
     return (
         <div>
-            <div>{result}</div>
+            <div>
+                <Result result={result} inputCount={inputCount} />
+            </div>
             <div>
                 <ButtonClear result={result} handleClear={handleClear} />
             </div>
@@ -67,6 +91,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={7}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>
@@ -74,6 +100,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={8}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>
@@ -81,6 +109,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={9}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>x</div>
@@ -89,6 +119,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={4}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>
@@ -96,6 +128,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={5}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>
@@ -103,6 +137,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={6}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>-</div>
@@ -111,6 +147,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={1}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>
@@ -118,6 +156,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={2}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>
@@ -125,6 +165,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={3}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>+</div>
@@ -133,6 +175,8 @@ const App = () => {
                     handleNumbers={handleNumbers}
                     currentNumber={result}
                     newNumber={0}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div>

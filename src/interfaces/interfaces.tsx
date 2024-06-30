@@ -1,7 +1,14 @@
 export interface InterfaceButtonNumber {
-    handleNumbers: (currentNumber: number, newNumber: number) => void;
+    handleNumbers: (
+        currentNumber: number,
+        newNumber: number,
+        decimalBoolean: boolean,
+        decimalMagnitude: number
+    ) => void;
     currentNumber: number;
     newNumber: number;
+    decimalBoolean: boolean;
+    decimalMagnitude: number;
 }
 
 export interface InterfaceButtonClear {
@@ -22,4 +29,9 @@ export interface InterfanceButtonPercentage {
 export interface InterfaceButtonDecimal {
     decimalBoolean: boolean;
     handleDecimalBoolean: () => void;
+}
+
+export interface InterfaceResult {
+    result: number;
+    inputCount: number;
 }
