@@ -6,6 +6,8 @@ const NumberButton: React.FC<InterfaceButtonNumber> = ({
     newNumber,
     decimalBoolean,
     decimalMagnitude,
+    resultMemory,
+    inputCount,
 }) => {
     return (
         <div>
@@ -15,7 +17,9 @@ const NumberButton: React.FC<InterfaceButtonNumber> = ({
                         currentNumber,
                         newNumber,
                         decimalBoolean,
-                        decimalMagnitude
+                        decimalMagnitude,
+                        resultMemory,
+                        inputCount
                     )
                 }
             >

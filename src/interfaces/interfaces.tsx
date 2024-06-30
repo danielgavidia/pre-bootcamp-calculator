@@ -3,12 +3,16 @@ export interface InterfaceButtonNumber {
         currentNumber: number,
         newNumber: number,
         decimalBoolean: boolean,
-        decimalMagnitude: number
+        decimalMagnitude: number,
+        resultMemory: number | null,
+        inputCount: number
     ) => void;
     currentNumber: number;
     newNumber: number;
     decimalBoolean: boolean;
     decimalMagnitude: number;
+    resultMemory: number | null;
+    inputCount: number;
 }
 
 export interface InterfaceButtonClear {
@@ -37,6 +41,14 @@ export interface InterfaceResult {
 }
 
 export interface InterfaceButtonOperation {
+    result: number;
+    resultMemory: number | null;
+    operation: string;
     newOperation: string;
-    handleOperation: (newOperation: string) => void;
+    handleOperation: (
+        result: number,
+        resultMemory: number | null,
+        operation: string,
+        newOperation: string
+    ) => void;
 }

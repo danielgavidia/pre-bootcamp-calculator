@@ -1,6 +1,9 @@
 import { InterfaceButtonOperation } from "../interfaces/interfaces";
 
 const ButtonOperation: React.FC<InterfaceButtonOperation> = ({
+    result,
+    resultMemory,
+    operation,
     newOperation,
     handleOperation,
 }) => {
@@ -11,7 +14,11 @@ const ButtonOperation: React.FC<InterfaceButtonOperation> = ({
         divide: "÷",
     };
     return (
-        <button onClick={() => handleOperation(newOperation)}>
+        <button
+            onClick={() =>
+                handleOperation(result, resultMemory, operation, newOperation)
+            }
+        >
             {operations[newOperation as keyof typeof operations]}
         </button>
     );
