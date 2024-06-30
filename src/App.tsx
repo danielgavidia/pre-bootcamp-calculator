@@ -2,29 +2,29 @@ import { useState } from "react";
 import ButtonNumber from "./components/ButtonNumber";
 import ButtonClear from "./components/ButtonClear";
 import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
+import ButtonPercentage from "./components/ButtonPercentage";
 
 const App = () => {
     const [result, setResult] = useState(0);
 
-    const handleNumbers = (
-        currentNumber: number,
-        newNumber: number
-    ): boolean => {
+    const handleNumbers = (currentNumber: number, newNumber: number): void => {
         const currentNumberTimesTen: number = currentNumber * 10;
         const finalNumber: number = currentNumberTimesTen + newNumber;
         setResult(finalNumber);
-        return true;
     };
 
-    const handleClear = (): boolean => {
+    const handleClear = (): void => {
         setResult(0);
-        return true;
     };
 
-    const handlePositiveNegative = (result: number): boolean => {
+    const handlePositiveNegative = (result: number): void => {
         const newResult: number = result * -1;
         setResult(newResult);
-        return true;
+    };
+
+    const handlePercentage = (result: number): void => {
+        const newResult: number = result * 0.01;
+        setResult(newResult);
     };
 
     return (
@@ -39,7 +39,12 @@ const App = () => {
                     handlePositiveNegative={handlePositiveNegative}
                 />
             </div>
-            <div>%</div>
+            <div>
+                <ButtonPercentage
+                    result={result}
+                    handlePercentage={handlePercentage}
+                />
+            </div>
             <div>÷</div>
             <div>
                 <ButtonNumber

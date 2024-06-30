@@ -1,5 +1,5 @@
 export interface InterfaceButtonNumber {
-    handleNumbers: (currentNumber: number, newNumber: number) => boolean;
+    handleNumbers: (currentNumber: number, newNumber: number) => void;
     currentNumber: number;
     newNumber: number;
 }
@@ -11,5 +11,10 @@ export interface InterfaceButtonClear {
 
 export interface InterfaceButtonPositiveNegative {
     result: number;
-    handlePositiveNegative: (result: number) => boolean;
+    handlePositiveNegative: (result: number) => void;
+}
+
+export interface InterfanceButtonPercentage {
+    result: number;
+    handlePercentage: (result: number) => void;
 }
