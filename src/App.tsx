@@ -108,6 +108,12 @@ const App = () => {
             setResultMemory(newResult);
             setOperation(newOperation);
             setInputCount(0);
+        } else if (operation === "equals") {
+            const newResult: number = result;
+            setResult(newResult);
+            setResultMemory(newResult);
+            setOperation(newOperation);
+            setInputCount(0);
         }
     };
 
@@ -283,7 +289,15 @@ const App = () => {
                     handleDecimalBoolean={handleDecimalBoolean}
                 />
             </div>
-            <div>=</div>
+            <div>
+                <ButtonOperation
+                    result={result}
+                    resultMemory={resultMemory}
+                    operation={operation}
+                    newOperation="equals"
+                    handleOperation={handleOperation}
+                />
+            </div>
         </div>
     );
 };

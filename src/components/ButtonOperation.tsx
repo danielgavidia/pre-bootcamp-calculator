@@ -12,6 +12,7 @@ const ButtonOperation: React.FC<InterfaceButtonOperation> = ({
         subtract: "-",
         multiply: "x",
         divide: "÷",
+        equals: "=",
     };
     return (
         <button
