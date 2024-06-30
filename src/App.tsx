@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HandleNumbers } from "./interfaces/interfaces";
-import NumberButton from "./components/numberButton";
+import NumberButton from "./components/NumberButton";
 
 const App = () => {
     const [result, setResult] = useState(0);
@@ -22,19 +22,79 @@ const App = () => {
             <div>+/-</div>
             <div>%</div>
             <div>÷</div>
-            <button onClick={() => handleNumbers(result, 7)}>7</button>
-            <div><NumberButton</div>
-            <div>9</div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={7}
+                />
+            </div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={8}
+                />
+            </div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={9}
+                />
+            </div>
             <div>x</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={4}
+                />
+            </div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={5}
+                />
+            </div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={6}
+                />
+            </div>
             <div>-</div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={1}
+                />
+            </div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={2}
+                />
+            </div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={3}
+                />
+            </div>
             <div>+</div>
-            <div>0</div>
+            <div>
+                <NumberButton
+                    handleNumbers={handleNumbers}
+                    currentNumber={result}
+                    newNumber={0}
+                />
+            </div>
             <div>.</div>
             <div>=</div>
         </div>
