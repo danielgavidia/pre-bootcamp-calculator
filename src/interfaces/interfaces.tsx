@@ -1,9 +1,5 @@
-export interface HandleNumbers {
-    (currentNumber: number, newNumber: number): boolean;
-}
-
 export interface InterfaceButtonNumber {
-    handleNumbers: HandleNumbers;
+    handleNumbers: (currentNumber: number, newNumber: number) => boolean;
     currentNumber: number;
     newNumber: number;
 }
@@ -11,4 +7,9 @@ export interface InterfaceButtonNumber {
 export interface InterfaceButtonClear {
     result: number;
     handleClear: Function;
+}
+
+export interface InterfaceButtonPositiveNegative {
+    result: number;
+    handlePositiveNegative: (result: number) => boolean;
 }

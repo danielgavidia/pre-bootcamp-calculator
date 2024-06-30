@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { HandleNumbers } from "./interfaces/interfaces";
 import ButtonNumber from "./components/ButtonNumber";
 import ButtonClear from "./components/ButtonClear";
+import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
 
 const App = () => {
     const [result, setResult] = useState(0);
 
-    const handleNumbers: HandleNumbers = (
-        currentNumber,
-        newNumber
+    const handleNumbers = (
+        currentNumber: number,
+        newNumber: number
     ): boolean => {
         const currentNumberTimesTen: number = currentNumber * 10;
         const finalNumber: number = currentNumberTimesTen + newNumber;
@@ -21,13 +21,24 @@ const App = () => {
         return true;
     };
 
+    const handlePositiveNegative = (result: number): boolean => {
+        const newResult: number = result * -1;
+        setResult(newResult);
+        return true;
+    };
+
     return (
         <div>
             <div>{result}</div>
             <div>
                 <ButtonClear result={result} handleClear={handleClear} />
             </div>
-            <div>+/-</div>
+            <div>
+                <ButtonPositiveNegative
+                    result={result}
+                    handlePositiveNegative={handlePositiveNegative}
+                />
+            </div>
             <div>%</div>
             <div>÷</div>
             <div>
