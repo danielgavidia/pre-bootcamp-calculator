@@ -3,9 +3,14 @@ import ButtonNumber from "./components/ButtonNumber";
 import ButtonClear from "./components/ButtonClear";
 import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
 import ButtonPercentage from "./components/ButtonPercentage";
+import ButtonDecimal from "./components/ButtonDecimal";
 
 const App = () => {
     const [result, setResult] = useState(0);
+    const [decimalBoolean, setDecimalBoolean] = useState(false);
+    const [decimalMagnitude, setDecimalMagnitude] = useState(1);
+
+    console.log(decimalBoolean);
 
     const handleNumbers = (currentNumber: number, newNumber: number): void => {
         const currentNumberTimesTen: number = currentNumber * 10;
@@ -15,6 +20,7 @@ const App = () => {
 
     const handleClear = (): void => {
         setResult(0);
+        setDecimalBoolean(!decimalBoolean);
     };
 
     const handlePositiveNegative = (result: number): void => {
@@ -25,6 +31,16 @@ const App = () => {
     const handlePercentage = (result: number): void => {
         const newResult: number = result * 0.01;
         setResult(newResult);
+    };
+
+    const handleDecimalBoolean = (): void => {
+        const newDecimalBoolean: boolean = !decimalBoolean;
+        setDecimalBoolean(newDecimalBoolean);
+    };
+
+    const handleDecimalMagnitude = (): void => {
+        const newDecimalMagnitude: number = decimalMagnitude * 0.1;
+        setDecimalMagnitude(newDecimalMagnitude);
     };
 
     return (
@@ -119,7 +135,12 @@ const App = () => {
                     newNumber={0}
                 />
             </div>
-            <div>.</div>
+            <div>
+                <ButtonDecimal
+                    decimalBoolean={decimalBoolean}
+                    handleDecimalBoolean={handleDecimalBoolean}
+                />
+            </div>
             <div>=</div>
         </div>
     );

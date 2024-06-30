@@ -18,3 +18,8 @@ export interface InterfanceButtonPercentage {
     result: number;
     handlePercentage: (result: number) => void;
 }
+
+export interface InterfaceButtonDecimal {
+    decimalBoolean: boolean;
+    handleDecimalBoolean: () => void;
+}
