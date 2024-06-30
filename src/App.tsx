@@ -121,7 +121,12 @@ const App = () => {
     return (
         <div className="container">
             <div className="box full-width">
-                <Result result={result} inputCount={inputCount} />
+                <Result
+                    result={result}
+                    inputCount={inputCount}
+                    decimalBoolean={decimalBoolean}
+                    decimalMagnitude={decimalMagnitude}
+                />
             </div>
             <div className="box">
                 <ButtonClear result={result} handleClear={handleClear} />
