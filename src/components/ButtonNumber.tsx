@@ -10,22 +10,21 @@ const NumberButton: React.FC<InterfaceButtonNumber> = ({
     inputCount,
 }) => {
     return (
-        <div>
-            <button
-                onClick={() =>
-                    handleNumbers(
-                        currentNumber,
-                        newNumber,
-                        decimalBoolean,
-                        decimalMagnitude,
-                        resultMemory,
-                        inputCount
-                    )
-                }
-            >
-                {newNumber}
-            </button>
-        </div>
+        <button
+            className="button numbers"
+            onClick={() =>
+                handleNumbers(
+                    currentNumber,
+                    newNumber,
+                    decimalBoolean,
+                    decimalMagnitude,
+                    resultMemory,
+                    inputCount
+                )
+            }
+        >
+            {newNumber}
+        </button>
     );
 };
 

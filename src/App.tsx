@@ -6,6 +6,7 @@ import ButtonPercentage from "./components/ButtonPercentage";
 import ButtonDecimal from "./components/ButtonDecimal";
 import Result from "./components/Result";
 import ButtonOperation from "./components/ButtonOperation";
+import "./App.css";
 
 const App = () => {
     const [result, setResult] = useState(0);
@@ -118,26 +119,26 @@ const App = () => {
     };
 
     return (
-        <div>
-            <div>
+        <div className="container">
+            <div className="box full-width">
                 <Result result={result} inputCount={inputCount} />
             </div>
-            <div>
+            <div className="box">
                 <ButtonClear result={result} handleClear={handleClear} />
             </div>
-            <div>
+            <div className="box">
                 <ButtonPositiveNegative
                     result={result}
                     handlePositiveNegative={handlePositiveNegative}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonPercentage
                     result={result}
                     handlePercentage={handlePercentage}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonOperation
                     result={result}
                     resultMemory={resultMemory}
@@ -146,7 +147,7 @@ const App = () => {
                     handleOperation={handleOperation}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -157,7 +158,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -168,7 +169,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -179,7 +180,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonOperation
                     result={result}
                     resultMemory={resultMemory}
@@ -188,7 +189,7 @@ const App = () => {
                     handleOperation={handleOperation}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -199,7 +200,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -210,7 +211,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -221,7 +222,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonOperation
                     result={result}
                     resultMemory={resultMemory}
@@ -230,7 +231,7 @@ const App = () => {
                     handleOperation={handleOperation}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -241,7 +242,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -252,7 +253,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -263,7 +264,7 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonOperation
                     result={result}
                     resultMemory={resultMemory}
@@ -272,7 +273,7 @@ const App = () => {
                     handleOperation={handleOperation}
                 />
             </div>
-            <div>
+            <div className="box half-width">
                 <ButtonNumber
                     handleNumbers={handleNumbers}
                     currentNumber={result}
@@ -283,13 +284,13 @@ const App = () => {
                     inputCount={inputCount}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonDecimal
                     decimalBoolean={decimalBoolean}
                     handleDecimalBoolean={handleDecimalBoolean}
                 />
             </div>
-            <div>
+            <div className="box">
                 <ButtonOperation
                     result={result}
                     resultMemory={resultMemory}

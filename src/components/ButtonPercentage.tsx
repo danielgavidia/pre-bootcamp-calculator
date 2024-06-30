@@ -4,7 +4,14 @@ const ButtonPercentage: React.FC<InterfanceButtonPercentage> = ({
     result,
     handlePercentage,
 }) => {
-    return <button onClick={() => handlePercentage(result)}>%</button>;
+    return (
+        <button
+            className="button operations-other"
+            onClick={() => handlePercentage(result)}
+        >
+            %
+        </button>
+    );
 };
 
 export default ButtonPercentage;

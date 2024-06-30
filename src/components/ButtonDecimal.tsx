@@ -5,9 +5,16 @@ const ButtonDecimal: React.FC<InterfaceButtonDecimal> = ({
     handleDecimalBoolean,
 }) => {
     if (decimalBoolean) {
-        return <button>.</button>;
+        return <button className="button numbers">.</button>;
     } else if (!decimalBoolean) {
-        return <button onClick={() => handleDecimalBoolean()}>.</button>;
+        return (
+            <button
+                className="button numbers"
+                onClick={() => handleDecimalBoolean()}
+            >
+                .
+            </button>
+        );
     }
 };
 
