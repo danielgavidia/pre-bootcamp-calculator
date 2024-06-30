@@ -5,9 +5,23 @@ const ButtonClear: React.FC<InterfaceButtonClear> = ({
     handleClear,
 }) => {
     if (result === 0) {
-        return <button onClick={() => handleClear()}>AC</button>;
+        return (
+            <button
+                className="button operations-other"
+                onClick={() => handleClear()}
+            >
+                AC
+            </button>
+        );
     } else if (result !== 0) {
-        return <button onClick={() => handleClear()}>C</button>;
+        return (
+            <button
+                className="button operations-other"
+                onClick={() => handleClear()}
+            >
+                C
+            </button>
+        );
     }
 };
 

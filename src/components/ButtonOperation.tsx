@@ -16,6 +16,7 @@ const ButtonOperation: React.FC<InterfaceButtonOperation> = ({
     };
     return (
         <button
+            className="button operations"
             onClick={() =>
                 handleOperation(result, resultMemory, operation, newOperation)
             }
