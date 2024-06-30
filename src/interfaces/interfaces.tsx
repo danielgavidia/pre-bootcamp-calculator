@@ -35,3 +35,8 @@ export interface InterfaceResult {
     result: number;
     inputCount: number;
 }
+
+export interface InterfaceButtonOperation {
+    newOperation: string;
+    handleOperation: (newOperation: string) => void;
+}

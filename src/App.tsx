@@ -5,17 +5,20 @@ import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
 import ButtonPercentage from "./components/ButtonPercentage";
 import ButtonDecimal from "./components/ButtonDecimal";
 import Result from "./components/Result";
+import ButtonOperation from "./components/ButtonOperation";
 
 const App = () => {
     const [result, setResult] = useState(0);
     const [decimalBoolean, setDecimalBoolean] = useState(false);
     const [decimalMagnitude, setDecimalMagnitude] = useState(0.1);
     const [inputCount, setInputCount] = useState(0);
+    const [operation, setOperation] = useState("");
 
     console.log(`result: ${result}`);
     console.log(`decimalBoolean: ${decimalBoolean}`);
     console.log(`decimalMagnitude: ${decimalMagnitude}`);
     console.log(`inputCount: ${inputCount}`);
+    console.log(`operation: ${operation}`);
 
     const handleNumbers = (
         currentNumber: number,
@@ -60,10 +63,9 @@ const App = () => {
         setDecimalBoolean(newDecimalBoolean);
     };
 
-    // const handleDecimalMagnitude = (): void => {
-    //     const newDecimalMagnitude: number = decimalMagnitude * 0.1;
-    //     setDecimalMagnitude(newDecimalMagnitude);
-    // };
+    const handleOperation = (newOperation: string): void => {
+        setOperation(newOperation);
+    };
 
     return (
         <div>
@@ -85,7 +87,12 @@ const App = () => {
                     handlePercentage={handlePercentage}
                 />
             </div>
-            <div>÷</div>
+            <div>
+                <ButtonOperation
+                    newOperation="divide"
+                    handleOperation={handleOperation}
+                />
+            </div>
             <div>
                 <ButtonNumber
                     handleNumbers={handleNumbers}
@@ -113,7 +120,12 @@ const App = () => {
                     decimalMagnitude={decimalMagnitude}
                 />
             </div>
-            <div>x</div>
+            <div>
+                <ButtonOperation
+                    newOperation="multiply"
+                    handleOperation={handleOperation}
+                />
+            </div>
             <div>
                 <ButtonNumber
                     handleNumbers={handleNumbers}
@@ -141,7 +153,12 @@ const App = () => {
                     decimalMagnitude={decimalMagnitude}
                 />
             </div>
-            <div>-</div>
+            <div>
+                <ButtonOperation
+                    newOperation="subtract"
+                    handleOperation={handleOperation}
+                />
+            </div>
             <div>
                 <ButtonNumber
                     handleNumbers={handleNumbers}
@@ -169,7 +186,12 @@ const App = () => {
                     decimalMagnitude={decimalMagnitude}
                 />
             </div>
-            <div>+</div>
+            <div>
+                <ButtonOperation
+                    newOperation="add"
+                    handleOperation={handleOperation}
+                />
+            </div>
             <div>
                 <ButtonNumber
                     handleNumbers={handleNumbers}
