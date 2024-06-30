@@ -9,12 +9,14 @@ import ButtonOperation from "./components/ButtonOperation";
 
 const App = () => {
     const [result, setResult] = useState(0);
+    const [resultMemory, setResultMemory] = useState<number | null>(null);
     const [decimalBoolean, setDecimalBoolean] = useState(false);
     const [decimalMagnitude, setDecimalMagnitude] = useState(0.1);
     const [inputCount, setInputCount] = useState(0);
     const [operation, setOperation] = useState("");
 
     console.log(`result: ${result}`);
+    console.log(`resultMemory: ${resultMemory}`);
     console.log(`decimalBoolean: ${decimalBoolean}`);
     console.log(`decimalMagnitude: ${decimalMagnitude}`);
     console.log(`inputCount: ${inputCount}`);
@@ -24,28 +26,37 @@ const App = () => {
         currentNumber: number,
         newNumber: number,
         decimalBoolean: boolean,
-        decimalMagnitude: number
+        decimalMagnitude: number,
+        resultMemory: number | null,
+        inputCount: number
     ): void => {
-        if (!decimalBoolean) {
-            const currentNumberTimesTen: number = currentNumber * 10;
-            const finalNumber: number = currentNumberTimesTen + newNumber;
-            setResult(finalNumber);
+        if (resultMemory !== null && inputCount === 0) {
+            setResult(newNumber);
             setInputCount(inputCount + 1);
         } else {
-            const newNumberDecimal: number = newNumber * decimalMagnitude;
-            const finalNumber: number = currentNumber + newNumberDecimal;
-            const newDecimalMagnitude = decimalMagnitude * 0.1;
-            setResult(finalNumber);
-            setDecimalMagnitude(newDecimalMagnitude);
-            setInputCount(inputCount + 1);
+            if (!decimalBoolean) {
+                const currentNumberTimesTen: number = currentNumber * 10;
+                const finalNumber: number = currentNumberTimesTen + newNumber;
+                setResult(finalNumber);
+                setInputCount(inputCount + 1);
+            } else if (decimalBoolean) {
+                const newNumberDecimal: number = newNumber * decimalMagnitude;
+                const finalNumber: number = currentNumber + newNumberDecimal;
+                const newDecimalMagnitude: number = decimalMagnitude * 0.1;
+                setResult(finalNumber);
+                setDecimalMagnitude(newDecimalMagnitude);
+                setInputCount(inputCount + 1);
+            }
         }
     };
 
     const handleClear = (): void => {
         setResult(0);
+        setResultMemory(null);
         setInputCount(0);
-        setDecimalBoolean(!decimalBoolean);
+        setDecimalBoolean(false);
         setDecimalMagnitude(0.1);
+        setOperation("");
     };
 
     const handlePositiveNegative = (result: number): void => {
@@ -63,8 +74,47 @@ const App = () => {
         setDecimalBoolean(newDecimalBoolean);
     };
 
-    const handleOperation = (newOperation: string): void => {
-        setOperation(newOperation);
+    const handleOperation = (
+        result: number,
+        resultMemory: number | null,
+        operation: string,
+        newOperation: string
+    ): void => {
+        if (resultMemory === null) {
+            setResultMemory(result);
+            setOperation(newOperation);
+            setInputCount(0);
+        } else if (operation === "add") {
+            const newResult: number = resultMemory + result;
+            setResult(newResult);
+            setResultMemory(newResult);
+            setOperation(newOperation);
+            setInputCount(0);
+        } else if (operation === "subtract") {
+            const newResult: number = resultMemory - result;
+            setResult(newResult);
+            setResultMemory(newResult);
+            setOperation(newOperation);
+            setInputCount(0);
+        } else if (operation === "multiply") {
+            const newResult: number = resultMemory * result;
+            setResult(newResult);
+            setResultMemory(newResult);
+            setOperation(newOperation);
+            setInputCount(0);
+        } else if (operation === "divide") {
+            const newResult: number = resultMemory / result;
+            setResult(newResult);
+            setResultMemory(newResult);
+            setOperation(newOperation);
+            setInputCount(0);
+        } else if (operation === "equals") {
+            const newResult: number = result;
+            setResult(newResult);
+            setResultMemory(newResult);
+            setOperation(newOperation);
+            setInputCount(0);
+        }
     };
 
     return (
@@ -89,6 +139,9 @@ const App = () => {
             </div>
             <div>
                 <ButtonOperation
+                    result={result}
+                    resultMemory={resultMemory}
+                    operation={operation}
                     newOperation="divide"
                     handleOperation={handleOperation}
                 />
@@ -100,6 +153,8 @@ const App = () => {
                     newNumber={7}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
@@ -109,6 +164,8 @@ const App = () => {
                     newNumber={8}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
@@ -118,10 +175,15 @@ const App = () => {
                     newNumber={9}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
                 <ButtonOperation
+                    result={result}
+                    resultMemory={resultMemory}
+                    operation={operation}
                     newOperation="multiply"
                     handleOperation={handleOperation}
                 />
@@ -133,6 +195,8 @@ const App = () => {
                     newNumber={4}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
@@ -142,6 +206,8 @@ const App = () => {
                     newNumber={5}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
@@ -151,10 +217,15 @@ const App = () => {
                     newNumber={6}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
                 <ButtonOperation
+                    result={result}
+                    resultMemory={resultMemory}
+                    operation={operation}
                     newOperation="subtract"
                     handleOperation={handleOperation}
                 />
@@ -166,6 +237,8 @@ const App = () => {
                     newNumber={1}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
@@ -175,6 +248,8 @@ const App = () => {
                     newNumber={2}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
@@ -184,10 +259,15 @@ const App = () => {
                     newNumber={3}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
                 <ButtonOperation
+                    result={result}
+                    resultMemory={resultMemory}
+                    operation={operation}
                     newOperation="add"
                     handleOperation={handleOperation}
                 />
@@ -199,6 +279,8 @@ const App = () => {
                     newNumber={0}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
+                    resultMemory={resultMemory}
+                    inputCount={inputCount}
                 />
             </div>
             <div>
@@ -207,7 +289,15 @@ const App = () => {
                     handleDecimalBoolean={handleDecimalBoolean}
                 />
             </div>
-            <div>=</div>
+            <div>
+                <ButtonOperation
+                    result={result}
+                    resultMemory={resultMemory}
+                    operation={operation}
+                    newOperation="equals"
+                    handleOperation={handleOperation}
+                />
+            </div>
         </div>
     );
 };
