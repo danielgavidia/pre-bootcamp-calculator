@@ -1,6 +1,6 @@
-import { InterfaceNumberButton } from "../interfaces/interfaces";
+import { InterfaceButtonNumber } from "../interfaces/interfaces";
 
-const NumberButton: React.FC<InterfaceNumberButton> = ({
+const NumberButton: React.FC<InterfaceButtonNumber> = ({
     handleNumbers,
     currentNumber,
     newNumber,
