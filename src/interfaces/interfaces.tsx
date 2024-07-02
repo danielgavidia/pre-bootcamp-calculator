@@ -1,33 +1,31 @@
 export interface InterfaceButtonNumber {
-    handleNumbers: (
-        currentNumber: number,
-        newNumber: number,
+    handleInput: (
+        int: number,
+        currentInput: number,
         decimalBoolean: boolean,
         decimalMagnitude: number,
-        resultMemory: number | null,
         inputCount: number
     ) => void;
-    currentNumber: number;
-    newNumber: number;
+    int: number;
+    currentInput: number;
     decimalBoolean: boolean;
     decimalMagnitude: number;
-    resultMemory: number | null;
     inputCount: number;
 }
 
 export interface InterfaceButtonClear {
-    result: number;
+    allClear: boolean;
     handleClear: Function;
 }
 
 export interface InterfaceButtonPositiveNegative {
-    result: number;
-    handlePositiveNegative: (result: number) => void;
+    input: number;
+    handlePositiveNegative: (input: number) => void;
 }
 
 export interface InterfanceButtonPercentage {
-    result: number;
-    handlePercentage: (result: number) => void;
+    input: number;
+    handlePercentage: (input: number) => void;
 }
 
 export interface InterfaceButtonDecimal {
@@ -36,19 +34,20 @@ export interface InterfaceButtonDecimal {
 }
 
 export interface InterfaceResult {
-    result: number;
+    input: number;
+    output: number;
+    inputMode: boolean;
     inputCount: number;
+    decimalBoolean: boolean;
+    decimalMagnitude: number;
 }
 
 export interface InterfaceButtonOperation {
-    result: number;
-    resultMemory: number | null;
-    operation: string;
-    newOperation: string;
-    handleOperation: (
-        result: number,
-        resultMemory: number | null,
-        operation: string,
-        newOperation: string
-    ) => void;
+    operationNew: string;
+    operationsObj: InterfaceOperationsObject;
+    handleOperation: (operationNew: string) => void;
+}
+
+export interface InterfaceOperationsObject {
+    [key: string]: any;
 }
