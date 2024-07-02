@@ -1,4 +1,4 @@
-import { InterfaceResult } from '../interfaces/interfaces';
+import { InterfaceResult } from "../interfaces/interfaces";
 
 const getFontSize = (number: number): object => {
     const startingFontSize = 50;

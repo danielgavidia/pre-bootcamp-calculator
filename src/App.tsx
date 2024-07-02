@@ -1,12 +1,13 @@
 import { useState } from "react";
-import ButtonNumber from "./components/ButtonNumber";
+
+import "./App.css";
 import ButtonClear from "./components/ButtonClear";
-import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
-import ButtonPercentage from "./components/ButtonPercentage";
 import ButtonDecimal from "./components/ButtonDecimal";
-import Result from "./components/Result";
+import ButtonNumber from "./components/ButtonNumber";
 import ButtonOperation from "./components/ButtonOperation";
-import "./App.csss";
+import ButtonPercentage from "./components/ButtonPercentage";
+import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
+import Result from "./components/Result";
 import { InterfaceOperationsObject } from "./interfaces/interfaces";
 
 const App = () => {
