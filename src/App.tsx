@@ -19,6 +19,7 @@ const App = () => {
     const [decimalBoolean, setDecimalBoolean] = useState(false);
     const [decimalMagnitude, setDecimalMagnitude] = useState(0.1);
     const [inputCount, setInputCount] = useState(0);
+    const [allClear, setAllClear] = useState(true);
 
     console.log(`input: ${input}`);
     console.log(`output: ${output}`);
@@ -29,6 +30,7 @@ const App = () => {
     console.log(`decimalBoolean: ${decimalBoolean}`);
     console.log(`decimalMagnitude: ${decimalMagnitude}`);
     console.log(`inputCount: ${inputCount}`);
+    console.log(`allClear: ${allClear}`);
 
     const handleInput = (
         int: number,
@@ -37,6 +39,7 @@ const App = () => {
         decimalMagnitude: number,
         inputCount: number
     ): void => {
+        setAllClear(false);
         if (!decimalBoolean) {
             const newInput: number = int + currentInput * 10;
             setInput(newInput);
@@ -67,24 +70,29 @@ const App = () => {
         setInputCount(0);
         setDecimalBoolean(false);
         setDecimalMagnitude(0.1);
+        setAllClear(true);
     };
 
     const handlePositiveNegative = (currentInput: number): void => {
+        setAllClear(false);
         const newInput: number = currentInput * -1;
         setInput(newInput);
     };
 
     const handlePercentage = (currentInput: number): void => {
+        setAllClear(false);
         const newInput: number = currentInput * 0.01;
         setInput(newInput);
     };
 
     const handleDecimalBoolean = (): void => {
+        setAllClear(false);
         const newDecimalBoolean: boolean = !decimalBoolean;
         setDecimalBoolean(newDecimalBoolean);
     };
 
     const handleOperation = (operationNew: string): void => {
+        setAllClear(false);
         if (inputMode) {
             if (operationPrior === "add") {
                 const newOutput = outputPrior + input;
@@ -149,7 +157,7 @@ const App = () => {
                 />
             </div>
             <div className="box">
-                <ButtonClear input={input} handleClear={handleClear} />
+                <ButtonClear allClear={allClear} handleClear={handleClear} />
             </div>
             <div className="box">
                 <ButtonPositiveNegative

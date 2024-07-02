@@ -14,7 +14,7 @@ export interface InterfaceButtonNumber {
 }
 
 export interface InterfaceButtonClear {
-    input: number;
+    allClear: boolean;
     handleClear: Function;
 }
 
