@@ -37,7 +37,7 @@ const App = () => {
         currentInput: number,
         decimalBoolean: boolean,
         decimalMagnitude: number,
-        inputCount: number
+        inputCount: number,
     ): void => {
         setAllClear(false);
         if (!decimalBoolean) {

@@ -1,4 +1,4 @@
-import { InterfaceResult } from "../interfaces/interfaces";
+import { InterfaceResult } from '../interfaces/interfaces';
 
 const getFontSize = (number: number): object => {
     const startingFontSize = 50;
@@ -18,7 +18,7 @@ const getFontSize = (number: number): object => {
         } else if (digits > defaultMaxDigits) {
             const iterations = digits - defaultMaxDigits;
             const dynamicFontSize = Math.floor(
-                startingFontSize * Math.pow(1 - decayFactor, iterations)
+                startingFontSize * Math.pow(1 - decayFactor, iterations),
             );
             return {
                 fontSize: `${dynamicFontSize}px`,
