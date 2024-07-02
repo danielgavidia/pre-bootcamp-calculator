@@ -6,7 +6,7 @@ import ButtonPercentage from "./components/ButtonPercentage";
 import ButtonDecimal from "./components/ButtonDecimal";
 import Result from "./components/Result";
 import ButtonOperation from "./components/ButtonOperation";
-import "./App.css";
+import "./App.csss";
 import { InterfaceOperationsObject } from "./interfaces/interfaces";
 
 const App = () => {
