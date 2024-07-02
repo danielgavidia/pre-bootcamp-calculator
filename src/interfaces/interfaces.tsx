@@ -4,7 +4,7 @@ export interface InterfaceButtonNumber {
         currentInput: number,
         decimalBoolean: boolean,
         decimalMagnitude: number,
-        inputCount: number
+        inputCount: number,
     ) => void;
     int: number;
     currentInput: number;

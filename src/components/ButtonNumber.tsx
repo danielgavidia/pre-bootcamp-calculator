@@ -17,7 +17,7 @@ const NumberButton: React.FC<InterfaceButtonNumber> = ({
                     currentInput,
                     decimalBoolean,
                     decimalMagnitude,
-                    inputCount
+                    inputCount,
                 )
             }
         >

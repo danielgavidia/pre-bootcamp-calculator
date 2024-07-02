@@ -1,12 +1,13 @@
 import { useState } from "react";
-import ButtonNumber from "./components/ButtonNumber";
-import ButtonClear from "./components/ButtonClear";
-import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
-import ButtonPercentage from "./components/ButtonPercentage";
-import ButtonDecimal from "./components/ButtonDecimal";
-import Result from "./components/Result";
-import ButtonOperation from "./components/ButtonOperation";
+
 import "./App.css";
+import ButtonClear from "./components/ButtonClear";
+import ButtonDecimal from "./components/ButtonDecimal";
+import ButtonNumber from "./components/ButtonNumber";
+import ButtonOperation from "./components/ButtonOperation";
+import ButtonPercentage from "./components/ButtonPercentage";
+import ButtonPositiveNegative from "./components/ButtonPositiveNegative";
+import Result from "./components/Result";
 import { InterfaceOperationsObject } from "./interfaces/interfaces";
 
 const App = () => {
@@ -37,7 +38,7 @@ const App = () => {
         currentInput: number,
         decimalBoolean: boolean,
         decimalMagnitude: number,
-        inputCount: number
+        inputCount: number,
     ): void => {
         setAllClear(false);
         if (!decimalBoolean) {

@@ -18,7 +18,7 @@ const getFontSize = (number: number): object => {
         } else if (digits > defaultMaxDigits) {
             const iterations = digits - defaultMaxDigits;
             const dynamicFontSize = Math.floor(
-                startingFontSize * Math.pow(1 - decayFactor, iterations)
+                startingFontSize * Math.pow(1 - decayFactor, iterations),
             );
             return {
                 fontSize: `${dynamicFontSize}px`,
