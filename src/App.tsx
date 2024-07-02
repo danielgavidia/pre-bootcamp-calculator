@@ -9,40 +9,43 @@ import ButtonOperation from "./components/ButtonOperation";
 import "./App.css";
 
 const App = () => {
-    const [result, setResult] = useState(0);
-    const [resultMemory, setResultMemory] = useState<number | null>(null);
+    const [input, setInput] = useState(0);
+    const [ouput, setOutput] = useState(1);
+    const [outputPrior, setOutputPrior] = useState(1);
+    const [operation, setOperation] = useState("multiply");
+    const [operationPrior, setOperationPrior] = useState("multiply");
+    const [inputMode, setInputMode] = useState(true);
+
     const [decimalBoolean, setDecimalBoolean] = useState(false);
     const [decimalMagnitude, setDecimalMagnitude] = useState(0.1);
     const [inputCount, setInputCount] = useState(0);
-    const [operation, setOperation] = useState("");
 
-    console.log(`result: ${result}`);
-    console.log(`resultMemory: ${resultMemory}`);
     console.log(`decimalBoolean: ${decimalBoolean}`);
     console.log(`decimalMagnitude: ${decimalMagnitude}`);
     console.log(`inputCount: ${inputCount}`);
     console.log(`operation: ${operation}`);
 
-    const handleNumbers = (
-        currentNumber: number,
-        newNumber: number,
+    const handleInput = (
+        int: number,
+        currentInput: number,
         decimalBoolean: boolean,
         decimalMagnitude: number,
-        resultMemory: number | null,
         inputCount: number
     ): void => {
         if (resultMemory !== null && inputCount === 0) {
-            setResult(newNumber);
+            setResult(int);
             setInputCount(inputCount + 1);
         } else {
             if (!decimalBoolean) {
-                const currentNumberTimesTen: number = currentNumber * 10;
-                const finalNumber: number = currentNumberTimesTen + newNumber;
-                setResult(finalNumber);
+                const newInput: number = int + currentInput * 10;
+                setInput(newInput);
+                setInputMode(true);
+                setOutputPrior(output);
+                setOperationPrior(operation);
                 setInputCount(inputCount + 1);
             } else if (decimalBoolean) {
-                const newNumberDecimal: number = newNumber * decimalMagnitude;
-                const finalNumber: number = currentNumber + newNumberDecimal;
+                const newNumberDecimal: number = int * decimalMagnitude;
+                const finalNumber: number = currentInput + newNumberDecimal;
                 const newDecimalMagnitude: number = decimalMagnitude * 0.1;
                 setResult(finalNumber);
                 setDecimalMagnitude(newDecimalMagnitude);
@@ -154,7 +157,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={7}
                     decimalBoolean={decimalBoolean}
@@ -165,7 +168,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={8}
                     decimalBoolean={decimalBoolean}
@@ -176,7 +179,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={9}
                     decimalBoolean={decimalBoolean}
@@ -196,7 +199,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={4}
                     decimalBoolean={decimalBoolean}
@@ -207,7 +210,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={5}
                     decimalBoolean={decimalBoolean}
@@ -218,7 +221,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={6}
                     decimalBoolean={decimalBoolean}
@@ -238,7 +241,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={1}
                     decimalBoolean={decimalBoolean}
@@ -249,7 +252,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={2}
                     decimalBoolean={decimalBoolean}
@@ -260,7 +263,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={3}
                     decimalBoolean={decimalBoolean}
@@ -280,7 +283,7 @@ const App = () => {
             </div>
             <div className="box half-width">
                 <ButtonNumber
-                    handleNumbers={handleNumbers}
+                    handleNumbers={handleInput}
                     currentNumber={result}
                     newNumber={0}
                     decimalBoolean={decimalBoolean}
