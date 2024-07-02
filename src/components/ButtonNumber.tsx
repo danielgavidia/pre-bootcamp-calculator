@@ -1,29 +1,27 @@
 import { InterfaceButtonNumber } from "../interfaces/interfaces";
 
 const NumberButton: React.FC<InterfaceButtonNumber> = ({
-    handleNumbers,
-    currentNumber,
-    newNumber,
+    handleInput,
+    int,
+    currentInput,
     decimalBoolean,
     decimalMagnitude,
-    resultMemory,
     inputCount,
 }) => {
     return (
         <button
             className="button numbers"
             onClick={() =>
-                handleNumbers(
-                    currentNumber,
-                    newNumber,
+                handleInput(
+                    int,
+                    currentInput,
                     decimalBoolean,
                     decimalMagnitude,
-                    resultMemory,
                     inputCount
                 )
             }
         >
-            {newNumber}
+            {int}
         </button>
     );
 };

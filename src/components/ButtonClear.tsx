@@ -1,10 +1,10 @@
 import { InterfaceButtonClear } from "../interfaces/interfaces";
 
 const ButtonClear: React.FC<InterfaceButtonClear> = ({
-    result,
+    input,
     handleClear,
 }) => {
-    if (result === 0) {
+    if (input === 0) {
         return (
             <button
                 className="button operations-other"
@@ -13,7 +13,7 @@ const ButtonClear: React.FC<InterfaceButtonClear> = ({
                 AC
             </button>
         );
-    } else if (result !== 0) {
+    } else if (input !== 0) {
         return (
             <button
                 className="button operations-other"

@@ -7,23 +7,28 @@ import ButtonDecimal from "./components/ButtonDecimal";
 import Result from "./components/Result";
 import ButtonOperation from "./components/ButtonOperation";
 import "./App.css";
+import { InterfaceOperationsObject } from "./interfaces/interfaces";
 
 const App = () => {
     const [input, setInput] = useState(0);
-    const [ouput, setOutput] = useState(1);
+    const [output, setOutput] = useState(1);
     const [outputPrior, setOutputPrior] = useState(1);
     const [operation, setOperation] = useState("multiply");
     const [operationPrior, setOperationPrior] = useState("multiply");
     const [inputMode, setInputMode] = useState(true);
-
     const [decimalBoolean, setDecimalBoolean] = useState(false);
     const [decimalMagnitude, setDecimalMagnitude] = useState(0.1);
     const [inputCount, setInputCount] = useState(0);
 
+    console.log(`input: ${input}`);
+    console.log(`output: ${output}`);
+    console.log(`outputPrior: ${outputPrior}`);
+    console.log(`operation: ${operation}`);
+    console.log(`operationPrior: ${operationPrior}`);
+    console.log(`inputMode: ${inputMode}`);
     console.log(`decimalBoolean: ${decimalBoolean}`);
     console.log(`decimalMagnitude: ${decimalMagnitude}`);
     console.log(`inputCount: ${inputCount}`);
-    console.log(`operation: ${operation}`);
 
     const handleInput = (
         int: number,
@@ -32,45 +37,46 @@ const App = () => {
         decimalMagnitude: number,
         inputCount: number
     ): void => {
-        if (resultMemory !== null && inputCount === 0) {
-            setResult(int);
+        if (!decimalBoolean) {
+            const newInput: number = int + currentInput * 10;
+            setInput(newInput);
+            setInputMode(true);
+            setOutputPrior(output);
+            setOperationPrior(operation);
             setInputCount(inputCount + 1);
-        } else {
-            if (!decimalBoolean) {
-                const newInput: number = int + currentInput * 10;
-                setInput(newInput);
-                setInputMode(true);
-                setOutputPrior(output);
-                setOperationPrior(operation);
-                setInputCount(inputCount + 1);
-            } else if (decimalBoolean) {
-                const newNumberDecimal: number = int * decimalMagnitude;
-                const finalNumber: number = currentInput + newNumberDecimal;
-                const newDecimalMagnitude: number = decimalMagnitude * 0.1;
-                setResult(finalNumber);
-                setDecimalMagnitude(newDecimalMagnitude);
-                setInputCount(inputCount + 1);
-            }
+        } else if (decimalBoolean) {
+            const newInputDecimal: number = int * decimalMagnitude;
+            const newInput: number = currentInput + newInputDecimal;
+            const newDecimalMagnitude: number = decimalMagnitude * 0.1;
+            setInput(newInput);
+            setInputMode(true);
+            setOutputPrior(output);
+            setOperationPrior(operation);
+            setDecimalMagnitude(newDecimalMagnitude);
+            setInputCount(inputCount + 1);
         }
     };
 
     const handleClear = (): void => {
-        setResult(0);
-        setResultMemory(null);
+        setInput(0);
+        setOutput(1);
+        setOutputPrior(1);
+        setOperation("multiply");
+        setOperationPrior("multiply");
+        setInputMode(true);
         setInputCount(0);
         setDecimalBoolean(false);
         setDecimalMagnitude(0.1);
-        setOperation("");
     };
 
-    const handlePositiveNegative = (result: number): void => {
-        const newResult: number = result * -1;
-        setResult(newResult);
+    const handlePositiveNegative = (currentInput: number): void => {
+        const newInput: number = currentInput * -1;
+        setInput(newInput);
     };
 
-    const handlePercentage = (result: number): void => {
-        const newResult: number = result * 0.01;
-        setResult(newResult);
+    const handlePercentage = (currentInput: number): void => {
+        const newInput: number = currentInput * 0.01;
+        setInput(newInput);
     };
 
     const handleDecimalBoolean = (): void => {
@@ -78,217 +84,208 @@ const App = () => {
         setDecimalBoolean(newDecimalBoolean);
     };
 
-    const handleOperation = (
-        result: number,
-        resultMemory: number | null,
-        operation: string,
-        newOperation: string
-    ): void => {
-        if (resultMemory === null) {
-            setResultMemory(result);
-            setOperation(newOperation);
-            setInputCount(0);
-        } else if (operation === "add") {
-            const newResult: number = resultMemory + result;
-            setResult(newResult);
-            setResultMemory(newResult);
-            setOperation(newOperation);
-            setInputCount(0);
-        } else if (operation === "subtract") {
-            const newResult: number = resultMemory - result;
-            setResult(newResult);
-            setResultMemory(newResult);
-            setOperation(newOperation);
-            setInputCount(0);
-        } else if (operation === "multiply") {
-            const newResult: number = resultMemory * result;
-            setResult(newResult);
-            setResultMemory(newResult);
-            setOperation(newOperation);
-            setInputCount(0);
-        } else if (operation === "divide") {
-            const newResult: number = resultMemory / result;
-            setResult(newResult);
-            setResultMemory(newResult);
-            setOperation(newOperation);
-            setInputCount(0);
-        } else if (operation === "equals") {
-            const newResult: number = result;
-            setResult(newResult);
-            setResultMemory(newResult);
-            setOperation(newOperation);
-            setInputCount(0);
+    const handleOperation = (operationNew: string): void => {
+        if (inputMode) {
+            if (operationPrior === "add") {
+                const newOutput = outputPrior + input;
+                setOutput(newOutput);
+            } else if (operationPrior === "subtract") {
+                const newOutput = outputPrior - input;
+                setOutput(newOutput);
+            } else if (operationPrior === "multiply") {
+                const newOutput = outputPrior * input;
+                setOutput(newOutput);
+            } else if (operationPrior === "divide") {
+                const newOutput = outputPrior / input;
+                setOutput(newOutput);
+            } else if (operationPrior === "equals") {
+                setOutput(outputPrior);
+            }
+            setOperation(operationNew);
+            setInputMode(false);
+            setInput(0);
+        } else if (!inputMode) {
+            setOperation(operationNew);
+            setInputMode(false);
+            setInput(0);
         }
+    };
+
+    const operationsObj: InterfaceOperationsObject = {
+        add: {
+            name: "add",
+            operand: "+",
+        },
+        subtract: {
+            name: "subtract",
+            operand: "-",
+        },
+        multiply: {
+            name: "multiply",
+            operand: "x",
+        },
+        divide: {
+            name: "divide",
+            operand: "/",
+        },
+        equals: {
+            name: "equals",
+            operand: "=",
+        },
     };
 
     return (
         <div className="container">
             <div className="box full-width">
                 <Result
-                    result={result}
+                    input={input}
+                    output={output}
+                    inputMode={inputMode}
                     inputCount={inputCount}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div className="box">
-                <ButtonClear result={result} handleClear={handleClear} />
+                <ButtonClear input={input} handleClear={handleClear} />
             </div>
             <div className="box">
                 <ButtonPositiveNegative
-                    result={result}
+                    input={input}
                     handlePositiveNegative={handlePositiveNegative}
                 />
             </div>
             <div className="box">
                 <ButtonPercentage
-                    result={result}
+                    input={input}
                     handlePercentage={handlePercentage}
                 />
             </div>
             <div className="box">
                 <ButtonOperation
-                    result={result}
-                    resultMemory={resultMemory}
-                    operation={operation}
-                    newOperation="divide"
+                    operationNew="subtract"
+                    operationsObj={operationsObj}
                     handleOperation={handleOperation}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={7}
+                    handleInput={handleInput}
+                    int={7}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={8}
+                    handleInput={handleInput}
+                    int={8}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={9}
+                    handleInput={handleInput}
+                    int={9}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonOperation
-                    result={result}
-                    resultMemory={resultMemory}
-                    operation={operation}
-                    newOperation="multiply"
+                    operationNew="multiply"
+                    operationsObj={operationsObj}
                     handleOperation={handleOperation}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={4}
+                    handleInput={handleInput}
+                    int={4}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={5}
+                    handleInput={handleInput}
+                    int={5}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={6}
+                    handleInput={handleInput}
+                    int={6}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonOperation
-                    result={result}
-                    resultMemory={resultMemory}
-                    operation={operation}
-                    newOperation="subtract"
+                    operationNew="subtract"
+                    operationsObj={operationsObj}
                     handleOperation={handleOperation}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={1}
+                    handleInput={handleInput}
+                    int={1}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={2}
+                    handleInput={handleInput}
+                    int={2}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={3}
+                    handleInput={handleInput}
+                    int={3}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
             <div className="box">
                 <ButtonOperation
-                    result={result}
-                    resultMemory={resultMemory}
-                    operation={operation}
-                    newOperation="add"
+                    operationNew="add"
+                    operationsObj={operationsObj}
                     handleOperation={handleOperation}
                 />
             </div>
             <div className="box half-width">
                 <ButtonNumber
-                    handleNumbers={handleInput}
-                    currentNumber={result}
-                    newNumber={0}
+                    handleInput={handleInput}
+                    int={0}
+                    currentInput={input}
                     decimalBoolean={decimalBoolean}
                     decimalMagnitude={decimalMagnitude}
-                    resultMemory={resultMemory}
                     inputCount={inputCount}
                 />
             </div>
@@ -300,10 +297,8 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonOperation
-                    result={result}
-                    resultMemory={resultMemory}
-                    operation={operation}
-                    newOperation="equals"
+                    operationNew="equals"
+                    operationsObj={operationsObj}
                     handleOperation={handleOperation}
                 />
             </div>

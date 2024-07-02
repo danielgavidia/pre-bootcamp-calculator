@@ -1,27 +1,16 @@
 import { InterfaceButtonOperation } from "../interfaces/interfaces";
 
 const ButtonOperation: React.FC<InterfaceButtonOperation> = ({
-    result,
-    resultMemory,
-    operation,
-    newOperation,
+    operationNew,
+    operationsObj,
     handleOperation,
 }) => {
-    const operations = {
-        add: "+",
-        subtract: "-",
-        multiply: "x",
-        divide: "÷",
-        equals: "=",
-    };
     return (
         <button
             className="button operations"
-            onClick={() =>
-                handleOperation(result, resultMemory, operation, newOperation)
-            }
+            onClick={() => handleOperation(operationNew)}
         >
-            {operations[newOperation as keyof typeof operations]}
+            {operationsObj[operationNew]["operand"]}
         </button>
     );
 };

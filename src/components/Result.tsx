@@ -1,29 +1,38 @@
 import { InterfaceResult } from "../interfaces/interfaces";
 
 const Result: React.FC<InterfaceResult> = ({
-    result,
+    input,
+    output,
+    inputMode,
     inputCount,
     decimalBoolean,
     decimalMagnitude,
 }) => {
-    switch (true) {
-        case inputCount === 0 && decimalBoolean === false:
-            return <div className="result">{result}</div>;
-        case inputCount !== 0 && decimalBoolean === false:
-            const resultCase1 = result.toPrecision(inputCount);
-            return <div className="result">{resultCase1}</div>;
-        case inputCount !== 0 &&
+    if (inputMode) {
+        if (inputCount === 0 && decimalBoolean === false) {
+            return <div className="result">{input}</div>;
+        } else if (inputCount !== 0 && decimalBoolean === false) {
+            const inputFormatted = input.toPrecision(inputCount);
+            return <div className="result">{inputFormatted}</div>;
+        } else if (
+            inputCount !== 0 &&
             decimalBoolean === true &&
-            decimalMagnitude === 0.1:
-            const resultCase2 = result.toPrecision(inputCount);
-            return <div className="result">{resultCase2}.</div>;
-        case inputCount !== 0 &&
+            decimalMagnitude === 0.1
+        ) {
+            const inputFormatted = input.toPrecision(inputCount);
+            return <div className="result">{inputFormatted}.</div>;
+        } else if (
+            inputCount !== 0 &&
             decimalBoolean === true &&
-            decimalMagnitude !== 0.1:
-            const resultCase3 = result.toPrecision(inputCount);
-            return <div className="result">{resultCase3}</div>;
-        default:
-            return <div className="result">{result}</div>;
+            decimalMagnitude !== 0.1
+        ) {
+            const inputFormatted = input.toPrecision(inputCount);
+            return <div className="result">{inputFormatted}</div>;
+        } else {
+            return <div className="result">{input}</div>;
+        }
+    } else if (!inputMode) {
+        return <div className="result">{output}</div>;
     }
 };
 
