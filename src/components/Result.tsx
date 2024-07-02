@@ -2,7 +2,7 @@ import { InterfaceResult } from "../interfaces/interfaces";
 
 const getFontSize = (number: number): object => {
     const startingFontSize = 50;
-    const decayFactor = 0.07;
+    const decayFactor = 0.09;
     const defaultMaxDigits = 10;
     if (number === 0) {
         return {
