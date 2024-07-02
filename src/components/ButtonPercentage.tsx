@@ -1,13 +1,13 @@
 import { InterfanceButtonPercentage } from "../interfaces/interfaces";
 
 const ButtonPercentage: React.FC<InterfanceButtonPercentage> = ({
-    result,
+    input,
     handlePercentage,
 }) => {
     return (
         <button
             className="button operations-other"
-            onClick={() => handlePercentage(result)}
+            onClick={() => handlePercentage(input)}
         >
             %
         </button>

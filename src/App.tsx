@@ -104,10 +104,12 @@ const App = () => {
             setOperation(operationNew);
             setInputMode(false);
             setInput(0);
+            setInputCount(0);
         } else if (!inputMode) {
             setOperation(operationNew);
             setInputMode(false);
             setInput(0);
+            setInputCount(0);
         }
     };
 

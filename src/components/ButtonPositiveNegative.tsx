@@ -1,13 +1,13 @@
 import { InterfaceButtonPositiveNegative } from "../interfaces/interfaces";
 
 const ButtonPositiveNegative: React.FC<InterfaceButtonPositiveNegative> = ({
-    result,
+    input,
     handlePositiveNegative,
 }) => {
     return (
         <button
             className="button operations-other"
-            onClick={() => handlePositiveNegative(result)}
+            onClick={() => handlePositiveNegative(input)}
         >
             +/-
         </button>
