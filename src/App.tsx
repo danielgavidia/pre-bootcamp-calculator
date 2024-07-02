@@ -93,6 +93,8 @@ const App = () => {
 
     const handleOperation = (operationNew: string): void => {
         setAllClear(false);
+        setDecimalBoolean(false);
+        setDecimalMagnitude(0.1);
         if (inputMode) {
             if (operationPrior === "add") {
                 const newOutput = outputPrior + input;
