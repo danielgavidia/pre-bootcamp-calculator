@@ -154,8 +154,6 @@ const App = () => {
                     output={output}
                     inputMode={inputMode}
                     inputCount={inputCount}
-                    decimalBoolean={decimalBoolean}
-                    decimalMagnitude={decimalMagnitude}
                 />
             </div>
             <div className="box">
@@ -175,7 +173,7 @@ const App = () => {
             </div>
             <div className="box">
                 <ButtonOperation
-                    operationNew="subtract"
+                    operationNew="divide"
                     operationsObj={operationsObj}
                     handleOperation={handleOperation}
                 />

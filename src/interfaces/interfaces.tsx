@@ -38,8 +38,6 @@ export interface InterfaceResult {
     output: number;
     inputMode: boolean;
     inputCount: number;
-    decimalBoolean: boolean;
-    decimalMagnitude: number;
 }
 
 export interface InterfaceButtonOperation {
